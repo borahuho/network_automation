@@ -1,0 +1,15 @@
+[web_lbs]
+lb01 ansible_host=192.168.22.10 
+
+[web_nodes]
+web01 ansible_host=192.168.22.11 
+web02 ansible_host=192.168.22.12 
+
+[web_cluster:children]
+web_lbs
+web_nodes
+
+[all:vars]
+ansible_connection=ssh
+ansible_user=student
+ansible_python_interpreter=/usr/bin/python3

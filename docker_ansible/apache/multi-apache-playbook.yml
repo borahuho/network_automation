@@ -1,0 +1,27 @@
+- hosts: docker1
+  gather_facts: False
+
+  tasks:
+  - name: launching apache 1
+    docker_container:
+      name: webserver1
+      image: httpd
+      state: started
+      networks_cli_compatible: yes
+      networks:
+      - name: macvlan_bridge
+        ipv4_address: "192.168.182.1"
+      volumes:
+        - /tmp/apache/:/usr/local/apache2/htdocs
+
+  - name: launching apache 2
+    docker_container:
+      name: webserver2
+      image: httpd
+      state: started
+      networks_cli_compatible: yes
+      networks:
+      - name: macvlan_bridge
+        ipv4_address: "192.168.182.2"
+      volumes:
+        - /tmp/apache/:/usr/local/apache2/htdocs

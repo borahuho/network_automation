@@ -1,0 +1,10 @@
+---
+- hosts: ubuntu-server
+  become: true
+  
+  tasks:
+  - name: Install HAProxy
+    apt:
+      name: haproxy
+      state: present
+      cache_valid_time: 3600

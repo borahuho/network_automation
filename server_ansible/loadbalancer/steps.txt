@@ -1,0 +1,14 @@
+#Steps for loadbalancer installation
+#Make sure there is a connection between desktop and server
+ansible -m ping ubuntu-server
+
+#make haproxy install yaml file
+
+#run install playbook
+ansible-playbook --ask-become-pass haproxy-install.yml
+
+#check version of haproxy (adhoc commands: https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html)
+ansible ubuntu-server -a "haproxy -v"
+
+#run config playbook
+ansible-playbook --ask-become-pass haproxy-config.yml

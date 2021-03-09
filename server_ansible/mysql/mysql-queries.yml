@@ -1,0 +1,11 @@
+---
+- hosts: ubuntu-server
+  become: true
+  vars_files:
+    - vars/default.yml
+
+  tasks:
+    - name: Simple select querie
+      community.mysql.mysqlquerie:
+      login_db: testdb
+      qeurie: SELECT * FROM noorderpoort

@@ -1,0 +1,14 @@
+
+- hosts: docker1
+  gather_facts: False
+
+  tasks:
+   - docker_container:
+      name: nginx-copy9
+      image: nginx
+      networks_cli_compatible: yes
+      networks:
+      - name: macvlan_bridge
+        ipv4_address: "192.168.182.9"
+
+    

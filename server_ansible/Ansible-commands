@@ -1,0 +1,18 @@
+#Install ansible
+sudo apt update
+sudo apt install software-properties-common
+sudo apt-add-repository –yes –update ppa:ansible/ansible
+sudo apt install ansible
+
+#ping
+ansible -m ping ubuntu-server
+
+#deploy playbook
+ansible-playbook --ask-become-pass playbook.yml 
+
+#using an inventory list
+ansible -i inventory/linux/inventory haproxy -m ping
+
+#OS-verion of all nodes in hosts file
+ansible all -a "cat /etc/issue.net"
+

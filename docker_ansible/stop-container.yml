@@ -1,0 +1,10 @@
+- hosts: docker1
+  gather_facts: False
+
+  tasks:
+
+  - name: stop and delete container
+    docker_container:
+      name: webserver3
+      image: httpd
+      state: absent

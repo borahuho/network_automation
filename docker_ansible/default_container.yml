@@ -1,0 +1,9 @@
+- hosts: host-name
+  tasks:
+  - docker_container:
+      name: test
+      image: ubuntu
+      networks_cli_compatible: yes
+      networks:
+      - name: macvlan_bridge
+        ipv4_address: "1.2.3.4"

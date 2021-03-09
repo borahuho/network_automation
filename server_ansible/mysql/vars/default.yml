@@ -1,0 +1,8 @@
+---
+mysql_root_password: "Welcome01"
+mysql_user_password: "Welcome01"
+app_user: "student"
+http_host: "noorderpoort"
+http_conf: "noorderpoort"
+http_port: "3306"
+disable_default: true

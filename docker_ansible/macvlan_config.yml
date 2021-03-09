@@ -1,0 +1,5 @@
+---
+# setup the macvlan
+- name: Create macvlan network configs
+  become: True
+  shell: docker network create -d macvlan -o macvlan_mode=bridge -o parent=ens33 --subnet=192.168.1.0/24 --gateway=192.168.1.1  macvlan_bridge

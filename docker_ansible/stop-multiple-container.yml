@@ -1,0 +1,21 @@
+- hosts: docker1
+  gather_facts: False
+
+  tasks:
+
+  - name: stop and delete container
+    docker_container:
+      name: "{{ item}}"
+      image: nginx
+      state: absent
+    with_items:
+      - nginx-copy
+      - nginx-copy2
+      - nginx-copy3
+      - nginx-copy4
+      - nginx-copy5
+      - nginx-copy6
+      - nginx-copy7
+      - nginx-copy8
+      - nginx-copy9
+  

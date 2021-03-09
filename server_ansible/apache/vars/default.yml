@@ -1,0 +1,6 @@
+---
+app_user: "student"
+http_host: "scooters.inc"
+http_conf: "scooters.inc.conf"
+http_port: "80"
+disable_default: true

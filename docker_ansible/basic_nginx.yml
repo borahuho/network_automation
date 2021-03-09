@@ -1,0 +1,9 @@
+- hosts: docker1
+  tasks:
+  - docker_container:
+      name: test-container
+      image: nginx
+      networks_cli_compatible: yes
+      networks:
+      - name: macvlan_bridge
+        ipv4_address: "192.168.182.15"

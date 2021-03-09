@@ -1,0 +1,22 @@
+---
+- hosts: ubuntu-server
+  become: true
+  vars_files:
+    - vars/default.yml
+
+  tasks:
+    - name: Copy complete website
+      copy:
+        src: "files/full-website/"
+        dest: "/var/www/{{ http_host }}"
+    
+  handlers:
+    - name: Reload Apache
+      service:
+        name: apache2
+        state: reloaded
+
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted
