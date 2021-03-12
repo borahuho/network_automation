@@ -1,0 +1,48 @@
+---
+- hosts: web
+  become: true
+  tasks:
+  - name: Install prerequisites
+    apt: name={{ item }} update_cache=yes state=latest force_apt_get=yes
+    loop: [ 'aptitude' ]
+  
+  - name: Install php Packages
+    apt: name={{ item }} update_cache=yes state=latest
+    loop: ['php', 'php-fpm', 'libapache2-mod-php','php-mysql']
+  
+  - name: start nginx
+    service:
+      name: nginx
+      state: started
+    become: yes
+
+  - name: copy the nginx config file and restart nginx
+    copy:
+      src: dynamic.cfg
+      dest: /etc/nginx/sites-available/dynamic.cfg
+    become: yes
+
+  - name: create symlink
+    file:
+      src: /etc/nginx/sites-available/dynamic.cfg
+      dest: /etc/nginx/sites-enabled/default
+      state: link
+    become: yes
+
+  - name: copy the content of the web site
+    copy:
+      src: "dynamic-site/"
+      dest: "/home/student/dynamic-site"
+
+  - name: restart php-fpm
+    service: name=php-fpm state=restarted
+
+  - name: restart nginx
+    service: name=nginx state=restarted
+
+
+
+
+
+
+
