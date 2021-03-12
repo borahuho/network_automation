@@ -1,0 +1,28 @@
+---
+  - hosts: lb
+    become: true
+    gather_facts: false
+
+    handlers:
+      - name: restart haproxy
+        systemd:
+          name: haproxy
+          state: restarted
+
+    tasks:
+      - name: install haproxy
+        apt:
+          name: haproxy
+          state: present
+
+      - name: Copy haproxy configuration file
+        template:
+          src: haproxy.cfg.j2
+          dest: /etc/haproxy/haproxy.cfg
+        notify: restart haproxy
+
+      - name: Start haproxy
+        systemd:
+          name: haproxy
+          state: started
+          enabled: true

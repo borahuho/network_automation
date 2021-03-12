@@ -1,0 +1,33 @@
+---
+- hosts: db
+  become: true
+  vars_files:
+    - vars/default.yml
+
+  tasks:
+    - name: Create a test MySQL database
+      become: true
+      mysql_db:
+        name: "noorderpoort_db"
+        state: absent
+
+    - name: Create database user
+      become: true
+      mysql_user:
+        name: student
+        password: "{{ mysql_user_password }}"
+        priv: '*.*:ALL'
+        state: present
+
+    - name: create a new database  
+      mysql_db: name=ansible-les state=present login_user=root login_password="{{ mysql_root_password }}"  
+
+    - name: add sample data to database  
+      copy: src=dump.sql dest=/tmp/dump.sql  
+
+    - name: insert sample data into database  
+      mysql_db: name=ansible-les state=import target=/tmp/dump.sql login_user=root login_password="{{ mysql_root_password }}"
+
+      
+
+    

@@ -1,0 +1,36 @@
+#Git clone the ansible-les
+git clone https://github.com/borahuho/nginx-HA
+
+#in the cloned directory
+cd /nginx-HA 
+
+#deploy vagrant 
+vagrant up
+
+#ssh-copy-id to all vagrant servers (6x)
+ssh-copy-id student@192.168.10.200
+
+#if allready installed
+ssh-keygen -f "/home/patrick/.ssh/known_hosts" -R "192.168.10.200"
+
+# make a hosts file in a new project directory
+
+#test connection to all hosts 
+ansible -m ping -i host-file all 
+
+# make the playbook for the nginx(web) servers in the nginx directory 
+
+# Run the play and config that the website is available
+ansible-playbook -i host-file --ask-become-pass playbook.yml
+
+#run playbook for HAproxy
+ansible-playbook -i host-file --ask-become-pass haproxy-config.yml
+
+# make and run the playbook for the database
+ansible-playbook -i host-file --ask-become-pass db-config.yml
+
+# make db -> run database.yml 
+ansible-playbook -i host-file --ask-become-pass database.yml
+
+# make a dynamic website and copy it to the web-servers
+ansible-playbook -i host-file --ask-become-pass copy-index.yml
