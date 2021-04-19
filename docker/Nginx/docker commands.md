@@ -11,7 +11,7 @@ sudo nano Dockerfile
 
 FROM nginx
 
-copy www /usr/share/nginx/html
+COPY www /usr/share/nginx/html
 
 sudo docker build -t nginx-demo
 
