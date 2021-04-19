@@ -28,8 +28,8 @@ docker run \
     nginx-demo
     
     
-    # stop && remove container from list
-    docker stop nginx 
-    docker rm nginx 
+# stop && remove container from list
+docker stop nginx 
+docker rm nginx 
 
 ```
