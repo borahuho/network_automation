@@ -13,7 +13,7 @@ FROM nginx
 
 COPY www /usr/share/nginx/html
 
-sudo docker build -t nginx-demo
+sudo docker build -t nginx-demo .
 
 docker run \
     -d --restart=unless-stopped \
