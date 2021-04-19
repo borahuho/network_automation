@@ -1,3 +1,4 @@
+```
 docker network create nginx
 docker volume create nginx 
 
@@ -31,3 +32,4 @@ docker run \
     docker stop nginx 
     docker rm nginx 
 
+```
