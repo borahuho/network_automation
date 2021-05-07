@@ -1,0 +1,9 @@
+On master Connection refused after reboot:
+
+sudo -i
+swapoff -a
+exit
+strace -eopenat kubectl version
+
+Or make a cron @reboot swapoff -a 
+
