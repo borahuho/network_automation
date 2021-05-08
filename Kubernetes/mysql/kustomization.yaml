@@ -1,0 +1,6 @@
+namespace: default
+resources:
+  - mysql-depl.yaml
+  - mysql-pv.yaml
+  - mysql-svc.yaml
+  - secret.yaml

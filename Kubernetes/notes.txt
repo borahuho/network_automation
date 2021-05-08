@@ -1,0 +1,29 @@
+kubectl get pvc
+kubectl delete pvc ...
+
+kubectl get pv
+kubectl delete pv ...
+
+kubectl delete deployment,svc mysql
+
+kubectl get pods --namespace apache
+kubectl get pods -o wide
+kubectl get pods --all-namespaces
+
+kubectl get svc
+kubectl get svc --namespace apache
+
+kubectl apply -k ./
+kubectl delete -k ./
+
+mysql:
+kubectl port-forward mysql-deployment-869c7596d9-8qd5n 3306:3306
+kubectl port-forward --address 0.0.0.0 mysql-deployment-869c7596d9-8qd5n 3306:3306
+kubectl expose deployment/mysql-deployment
+
+controleren of er nog een expose is in svc 
+kubectl get svc 
+kubectl delete service/......
+
+ps -ef | grep port-forward
+pkill -f "port-forward"
