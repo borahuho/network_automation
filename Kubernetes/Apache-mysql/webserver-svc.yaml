@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-service
+  name: apache-service
   labels:
-    run: web-service
+    app: apache
 spec:
   type: LoadBalancer
   ports:
@@ -11,3 +11,4 @@ spec:
     protocol: TCP
   selector:
     app: apache
+    tier: frontend

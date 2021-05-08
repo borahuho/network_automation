@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webserver
+  name: apache 
   labels:
     app: apache
 spec:
@@ -9,10 +9,12 @@ spec:
   selector:
     matchLabels:
       app: apache
+      tier: frontend
   template:
     metadata:
       labels:
         app: apache
+        tier: fronted
     spec:
       containers:
       - name: php-apache
